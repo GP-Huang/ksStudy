@@ -26,7 +26,7 @@ public class BaseDao {
         driver = properties.getProperty("driver");
         url = properties.getProperty("url");
         userName = properties.getProperty("userName");
-        password = properties.getProperty("password");
+        password = properties.getProperty("passWord");
     }
 
     //获取数据库连接
@@ -42,7 +42,7 @@ public class BaseDao {
     }
 
     //返回结果集
-    public static ResultSet execute(Connection conn, ResultSet rs, String Sql, Object[] params, PreparedStatement preparedStatement) throws SQLException {
+    public static ResultSet execute(Connection conn, PreparedStatement preparedStatement, ResultSet rs, String Sql, Object[] params) throws SQLException {
         //预编译
         preparedStatement = conn.prepareStatement(Sql);
 

@@ -6,7 +6,7 @@ public class User {
     private Integer id; //id
     private String userCode; //用户编码
     private String userName; //用户名称
-    private String userPassword; //用户密码
+    private String password; //用户密码
     private Integer gender;  //性别
     private Date birthday;  //出生日期
     private String phone;   //电话
@@ -48,12 +48,12 @@ public class User {
         this.userName = userName;
     }
 
-    public String getUserPassword() {
-        return userPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getGender() {
