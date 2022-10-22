@@ -58,17 +58,17 @@ public class BaseDao {
     }
 
     //返回结果集
-    public static int execute(Connection conn, String Sql, Object[] params, PreparedStatement preparedStatement) throws SQLException {
+    public static int execute(Connection conn, PreparedStatement pstm, String Sql, Object[] params) throws SQLException {
         //预编译
-        preparedStatement = conn.prepareStatement(Sql);
+        pstm = conn.prepareStatement(Sql);
 
         if(params!=null){
             for(int i=0;i<params.length;i++){//添加占位符
-                preparedStatement.setObject(i+1, params[i]);
+                pstm.setObject(i+1, params[i]);
             }
         }
         //执行sql语句
-        int rows = preparedStatement.executeUpdate();
+        int rows = pstm.executeUpdate();
         //返回结果集
         return rows;
     }

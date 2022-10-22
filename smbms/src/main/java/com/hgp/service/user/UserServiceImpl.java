@@ -4,6 +4,7 @@ import com.hgp.dao.BaseDao;
 import com.hgp.dao.user.UserDao;
 import com.hgp.dao.user.UserDaoImpl;
 import com.hgp.pojo.User;
+import com.mysql.cj.util.StringUtils;
 import org.junit.Test;
 
 import java.sql.Connection;
@@ -38,6 +39,21 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    public boolean updatePwd(String userCode, String pwd){
+        Connection conn = BaseDao.getConnection();
+        int flag = 0;
+        if (userCode != null  && !StringUtils.isNullOrEmpty(pwd)){
+            flag = userDao.updatePwd(conn, userCode, pwd);
+            System.out.println("账号+密码" + userCode +":" + pwd);
+        }
+
+        if (flag > 0) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     @Test
     public void userTest(){
         UserServiceImpl userService = new UserServiceImpl();
@@ -48,5 +64,9 @@ public class UserServiceImpl implements UserService {
         System.out.println(user);
     }
 
+    @Test
+    public void updatePwdTest(){
+        System.out.println(updatePwd("admin", "666"));
+    }
 
 }

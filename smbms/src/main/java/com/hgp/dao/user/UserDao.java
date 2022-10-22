@@ -9,4 +9,6 @@ public interface UserDao {
 
     public User getLoginUser(Connection conn, String userCode) throws SQLException;
 
+    public int updatePwd(Connection conn, String userCode, String pwd);
+
 }

@@ -19,10 +19,10 @@ public class UserDaoImpl implements UserDao {
         String sql = "select * from smbms_user where userCode =?";
         Object[] params = {userCode};
 
-        if(conn != null) {
+        if (conn != null) {
             rs = BaseDao.execute(conn, stmt, rs, sql, params);
 
-            if(rs.next()) {
+            if (rs.next()) {
                 user = new User();
                 user.setId(rs.getInt("id"));
                 user.setUserCode(rs.getString("userCode"));
@@ -39,10 +39,31 @@ public class UserDaoImpl implements UserDao {
                 user.setModifyDate(rs.getDate("modifyDate"));
             }
 
-            BaseDao.closeAll(null,stmt, rs);
+            BaseDao.closeAll(null, stmt, rs);
         }
 
 
         return user;
+    }
+
+
+    public int updatePwd(Connection conn, String userCode, String pwd) {
+        PreparedStatement pstm = null;
+        String sql = "update smbms_user set userPassword = ? where userCode = ?;";
+        Object[] params = {pwd, userCode};
+
+        int rows = 0;
+
+        if (conn != null) {
+            try {
+                rows = BaseDao.execute(conn, pstm, sql, params);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }else {
+            return rows;
+        }
+
+        return rows;
     }
 }
