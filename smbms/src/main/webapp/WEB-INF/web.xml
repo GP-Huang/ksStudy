@@ -36,6 +36,11 @@
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 
+    <!--  这里是Session过期时间-->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
     <!--  这里是Servlet  -->
     <servlet>
         <servlet-name>loginServlet</servlet-name>
